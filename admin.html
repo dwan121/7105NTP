@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TryoutKu - Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="admin">
+  <header class="topbar">
+    <div class="brand">TryoutKu Admin</div>
+    <div class="admin-user">
+      <span id="adminDisplayName"></span>
+      <button id="adminLogoutButton" class="ghost-button" type="button">Keluar</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="admin-hero panel">
+      <div>
+        <div class="eyebrow">ADMINISTRATOR</div>
+        <h1>Dashboard Admin</h1>
+        <p class="muted">Kelola bank soal untuk Pretest, Komprehensif, dan Post Test.</p>
+      </div>
+    </section>
+
+    <section class="panel admin-card">
+      <div class="panel-header">
+        <h2>Upload Soal</h2>
+        <p class="muted">Format yang didukung: DOCX dan PDF.</p>
+      </div>
+
+      <form id="uploadForm">
+        <div class="form-group">
+          <label for="adminExamType">Jenis Ujian</label>
+          <select id="adminExamType">
+            <option value="pretest">Pretest</option>
+            <option value="komprehensif">Komprehensif</option>
+            <option value="posttest">Post Test</option>
+          </select>
+        </div>
+
+        <div class="upload-box">
+          <div class="upload-icon">📄</div>
+          <label for="adminQuestionFile" class="file-label">Pilih file soal</label>
+          <input id="adminQuestionFile" type="file" accept=".docx,.pdf,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+          <div id="selectedFileName" class="muted">Belum ada file dipilih.</div>
+        </div>
+
+        <button id="adminUploadButton" class="primary-button full-width" type="submit">Upload & Baca Soal</button>
+      </form>
+
+      <div id="adminMessage" class="status-message"></div>
+    </section>
+
+    <section class="panel admin-card">
+      <div class="panel-header">
+        <h2>Pengaturan Ujian</h2>
+        <p class="muted">
+          Atur durasi dan buka/tutup ujian. Jika ujian ditutup, peserta tidak dapat memulainya.
+        </p>
+      </div>
+
+      <div id="examSettingsGrid" class="settings-grid">
+        <div class="setting-card" data-setting-card="pretest">
+          <div class="setting-card-header">
+            <div>
+              <div class="eyebrow">PRETEST</div>
+              <h3>Pretest</h3>
+            </div>
+            <span id="status-pretest" class="status-badge locked">Terkunci</span>
+          </div>
+
+          <div class="form-group">
+            <label for="duration-pretest">Durasi (menit)</label>
+            <input id="duration-pretest" type="number" min="1" max="360" value="2">
+          </div>
+
+          <label class="switch-row">
+            <input id="enabled-pretest" type="checkbox">
+            <span>Buka ujian untuk peserta</span>
+          </label>
+
+          <label class="switch-row">
+            <input id="show-score-pretest" type="checkbox" checked>
+            <span>Tampilkan nilai setelah ujian</span>
+          </label>
+
+          <button class="secondary-button save-setting-button" type="button" data-exam="pretest">
+            Simpan Pengaturan
+          </button>
+        </div>
+
+        <div class="setting-card" data-setting-card="komprehensif">
+          <div class="setting-card-header">
+            <div>
+              <div class="eyebrow">KOMPREHENSIF</div>
+              <h3>Komprehensif</h3>
+            </div>
+            <span id="status-komprehensif" class="status-badge locked">Terkunci</span>
+          </div>
+
+          <div class="form-group">
+            <label for="duration-komprehensif">Durasi (menit)</label>
+            <input id="duration-komprehensif" type="number" min="1" max="360" value="2">
+          </div>
+
+          <label class="switch-row">
+            <input id="enabled-komprehensif" type="checkbox">
+            <span>Buka ujian untuk peserta</span>
+          </label>
+
+          <label class="switch-row">
+            <input id="show-score-komprehensif" type="checkbox" checked>
+            <span>Tampilkan nilai setelah ujian</span>
+          </label>
+
+          <button class="secondary-button save-setting-button" type="button" data-exam="komprehensif">
+            Simpan Pengaturan
+          </button>
+        </div>
+
+        <div class="setting-card" data-setting-card="posttest">
+          <div class="setting-card-header">
+            <div>
+              <div class="eyebrow">POST TEST</div>
+              <h3>Post Test</h3>
+            </div>
+            <span id="status-posttest" class="status-badge locked">Terkunci</span>
+          </div>
+
+          <div class="form-group">
+            <label for="duration-posttest">Durasi (menit)</label>
+            <input id="duration-posttest" type="number" min="1" max="360" value="2">
+          </div>
+
+          <label class="switch-row">
+            <input id="enabled-posttest" type="checkbox">
+            <span>Buka ujian untuk peserta</span>
+          </label>
+
+          <label class="switch-row">
+            <input id="show-score-posttest" type="checkbox" checked>
+            <span>Tampilkan nilai setelah ujian</span>
+          </label>
+
+          <button class="secondary-button save-setting-button" type="button" data-exam="posttest">
+            Simpan Pengaturan
+          </button>
+        </div>
+      </div>
+
+      <div id="settingsMessage" class="status-message"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Format Dokumen Soal</h2>
+        <p class="muted">Gunakan pola berikut agar parser dapat membaca soal otomatis.</p>
+      </div>
+      <pre class="format-example">1. Ibu kota Indonesia adalah ...
+A. Bandung
+B. Jakarta
+C. Surabaya
+D. Medan
+Jawaban: B</pre>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

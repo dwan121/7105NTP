@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TryoutKu - Ujian</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="exam">
+  <header class="topbar">
+    <div class="brand">TryoutKu</div>
+    <div id="participantDisplay" class="participant-chip"></div>
+    <button id="logoutButton" class="ghost-button" type="button">Keluar</button>
+  </header>
+
+  <main class="page-shell">
+    <section id="examSelectionPage" class="panel">
+      <div class="panel-header">
+        <h1>Pilih Ujian</h1>
+        <p class="muted">Pilih salah satu ujian untuk memulai.</p>
+      </div>
+
+      <div class="exam-grid">
+        <button class="exam-card" type="button" data-exam="pretest">
+          <span class="exam-icon">📝</span>
+          <span>
+            <strong>Pretest</strong>
+            <small>Ujian awal sebelum pembelajaran.</small>
+            <small id="meta-pretest">Memuat pengaturan...</small>
+          </span>
+          <span id="lock-pretest" class="exam-lock">Memuat...</span>
+          <span class="card-arrow">→</span>
+        </button>
+
+        <button class="exam-card" type="button" data-exam="komprehensif">
+          <span class="exam-icon">📚</span>
+          <span>
+            <strong>Komprehensif</strong>
+            <small>Ujian untuk mengukur pemahaman menyeluruh.</small>
+            <small id="meta-komprehensif">Memuat pengaturan...</small>
+          </span>
+          <span id="lock-komprehensif" class="exam-lock">Memuat...</span>
+          <span class="card-arrow">→</span>
+        </button>
+
+        <button class="exam-card" type="button" data-exam="posttest">
+          <span class="exam-icon">🎯</span>
+          <span>
+            <strong>Post Test</strong>
+            <small>Ujian akhir setelah pembelajaran.</small>
+            <small id="meta-posttest">Memuat pengaturan...</small>
+          </span>
+          <span id="lock-posttest" class="exam-lock">Memuat...</span>
+          <span class="card-arrow">→</span>
+        </button>
+      </div>
+
+      <div id="selectionMessage" class="status-message"></div>
+    </section>
+
+    <section id="examContainer" class="exam-layout hidden">
+      <div class="exam-main panel">
+        <div class="exam-toolbar">
+          <div>
+            <div id="examNameDisplay" class="eyebrow">Ujian</div>
+            <div id="questionNumber" class="question-counter">Soal 1</div>
+          </div>
+          <div id="timer" class="timer">02:00</div>
+        </div>
+
+        <div id="questionText" class="question-text">Memuat soal...</div>
+        <div id="options" class="options"></div>
+
+        <div class="question-actions">
+          <button id="prevButton" class="secondary-button" type="button">Sebelumnya</button>
+          <button id="nextButton" class="primary-button" type="button">Berikutnya</button>
+        </div>
+      </div>
+
+      <aside class="question-nav panel">
+        <h3>Daftar Soal</h3>
+        <div id="questionPalette" class="question-palette"></div>
+        <button id="finishButton" class="danger-button" type="button">Selesai Ujian</button>
+      </aside>
+    </section>
+
+    <section id="resultPage" class="panel result-panel hidden">
+      <div class="result-icon">✓</div>
+      <h1 id="resultTitle">Ujian selesai</h1>
+      <p id="resultMessage" class="muted"></p>
+
+      <div class="score-card">
+        <span>Nilai</span>
+        <strong id="score">0</strong>
+      </div>
+
+      <div class="result-stats">
+        <div><span>Benar</span><strong id="correctCount">0</strong></div>
+        <div><span>Salah</span><strong id="wrongCount">0</strong></div>
+        <div><span>Kosong</span><strong id="unansweredCount">0</strong></div>
+      </div>
+
+      <button id="backToExamSelection" class="primary-button" type="button">Kembali ke Pilihan Ujian</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TryoutKu - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="login">
+  <main class="login-page">
+    <section class="login-card">
+      <div class="brand">TryoutKu</div>
+      <h1>Masuk ke Ujian</h1>
+      <p class="muted">Masukkan nama dan alamat Gmail untuk melanjutkan.</p>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="participantName">Nama</label>
+          <input id="participantName" type="text" autocomplete="name" placeholder="Nama lengkap">
+          <div id="nameError" class="error-message"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="participantEmail">Email Gmail</label>
+          <input id="participantEmail" type="email" autocomplete="email" placeholder="nama@gmail.com">
+          <div id="emailError" class="error-message"></div>
+        </div>
+
+        <button id="loginButton" class="primary-button" type="submit">Masuk</button>
+      </form>
+
+      <div id="loginMessage" class="status-message"></div>
+      <p class="small-note">Admin yang terdaftar akan diarahkan otomatis ke dashboard admin.</p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
